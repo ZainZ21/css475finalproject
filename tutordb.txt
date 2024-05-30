@@ -1,0 +1,105 @@
+\qecho William Sun
+\qecho Create database
+
+\qecho Perform a SELECT current_database();
+SELECT current_database(); 
+CREATE DATABASE tutordb;
+\c tutordb
+SELECT current_database(); 
+
+\qecho create ROOM Table
+CREATE TABLE room (
+    ID SERIAL PRIMARY KEY,
+    roomnumber INTEGER NOT NULL,
+    capacity INTEGER NOT NULL,
+    buildingLocation VARCHAR(100) NOT NULL
+);
+
+\qecho create PhoneType Table
+CREATE TABLE phonetype (
+    ID SERIAL PRIMARY KEY,
+    type VARCHAR(10) NOT NULL
+);
+
+\qecho create Phone Table
+CREATE TABLE phone (
+    ID SERIAL PRIMARY KEY,
+    phonetypeID INTEGER NOT NULL,
+    number VARCHAR(15),
+    FOREIGN KEY (phonetypeID) REFERENCES phonetype(ID) DEFERRABLE INITIALLY DEFERRED
+);
+
+\qecho create ATTENDANCE Table
+CREATE TABLE attendance (
+    ID SERIAL PRIMARY KEY,
+    gradeNumber INTEGER NOT NULL
+);
+
+\qecho create SUBJECT Table
+CREATE TABLE subject (
+    ID SERIAL PRIMARY KEY,
+    name VARCHAR(30) NOT NULL
+);
+
+\qecho create INSTRUCTOR Table
+CREATE TABLE instructor (
+    ID SERIAL PRIMARY KEY,
+    firstName VARCHAR(20) NOT NULL,
+    lastName VARCHAR(20) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    phoneID INTEGER NOT NULL,
+    FOREIGN KEY (phoneID) REFERENCES phone(ID) DEFERRABLE INITIALLY DEFERRED
+);
+
+\qecho create GRADE Table
+CREATE TABLE grade (
+    ID SERIAL PRIMARY KEY,
+    gradeNumber VARCHAR(20) NOT NULL
+);
+
+\qecho create COST Table
+CREATE TABLE cost (
+    ID SERIAL PRIMARY KEY,
+    Cost INTEGER NOT NULL,
+    parentID INTEGER NOT NULL
+);
+
+\qecho create CLASS Table
+CREATE TABLE class (
+    ID SERIAL PRIMARY KEY,
+    starttime TIMESTAMP NOT NULL,
+    roomID INTEGER NOT NULL,
+    instructorID INTEGER NOT NULL,
+    attendanceID INTEGER NOT NULL,
+    subjectID INTEGER NOT NULL,
+    costID INTEGER NOT NULL,
+    FOREIGN KEY (roomID) REFERENCES room(ID) DEFERRABLE INITIALLY DEFERRED,
+    FOREIGN KEY (instructorID) REFERENCES instructor(ID) DEFERRABLE INITIALLY DEFERRED,
+    FOREIGN KEY (attendanceID) REFERENCES attendance(ID) DEFERRABLE INITIALLY DEFERRED,
+    FOREIGN KEY (subjectID) REFERENCES subject(ID) DEFERRABLE INITIALLY DEFERRED,
+    FOREIGN KEY (costID) REFERENCES cost(ID) DEFERRABLE INITIALLY DEFERRED
+);
+
+\qecho create STUDENT Table
+CREATE TABLE student (
+    ID SERIAL PRIMARY KEY,
+    firstName VARCHAR(20) NOT NULL,
+    lastName VARCHAR(20) NOT NULL,
+    gradeID INTEGER,
+    classID INTEGER,
+    FOREIGN KEY (gradeID) REFERENCES grade(ID) DEFERRABLE INITIALLY DEFERRED,
+    FOREIGN KEY (classID) REFERENCES class(ID) DEFERRABLE INITIALLY DEFERRED
+);
+
+\qecho create PARENT Table
+CREATE TABLE parent (
+    ID SERIAL PRIMARY KEY,
+    firstName VARCHAR(20) NOT NULL,
+    lastName VARCHAR(20) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    studentID INTEGER NOT NULL,
+    FOREIGN KEY (studentID) REFERENCES student(ID) DEFERRABLE INITIALLY DEFERRED
+);
+
+\c postgres
+

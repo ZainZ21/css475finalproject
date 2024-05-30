@@ -1,0 +1,75 @@
+
+-- Insert sample data into the GRADE table
+INSERT INTO grade (ID, gradenumber)
+VALUES
+    (1, 'kindergarten'),
+    (2, 'one'),
+    (3, 'two'),
+    (4, 'three'),
+    (5, 'four'),
+    (6, 'five'),
+    (7, 'six');
+
+-- Insert sample data into the SUBJECT table
+INSERT INTO subject (ID, name)
+VALUES
+    (1, 'Math'),
+    (2, 'Science'),
+    (3, 'English');
+
+-- Insert sample data into the ROOM table
+INSERT INTO room (ID, roomnumber, capacity, buildingLocation)
+VALUES
+    (1, 101, 30, 'Main Building'),
+    (2, 102, 20, 'Science Wing');
+
+-- Insert sample data into the PHONETYPE table
+INSERT INTO phonetype (ID, type)
+VALUES
+    (1, 'Mobile'),
+    (2, 'Landline');
+
+-- Insert sample data into the PHONE table
+INSERT INTO phone (ID, phonetypeID, number)
+VALUES
+    (1, 1, '123-456-7890'),
+    (2, 2, '098-765-4321');
+
+-- Insert sample data into the ATTENDANCE table
+INSERT INTO attendance (ID, gradeNumber)
+VALUES
+    (1, 12),
+    (2, 10);
+
+-- Insert sample data into the INSTRUCTOR table
+INSERT INTO instructor (ID, firstName, lastName, email, phoneID)
+VALUES
+    (1, 'John', 'Doe', 'john.doe@example.com', 1),
+    (2, 'Jane', 'Smith', 'jane.smith@example.com', 2);
+
+-- Insert sample data into the COST table
+INSERT INTO cost (ID, Cost, parentID)
+VALUES
+    (1, 100, 1),
+    (2, 200, 2);
+
+-- Insert sample data into the CLASS table
+INSERT INTO class (ID, starttime, roomID, instructorID, attendanceID, subjectID, costID)
+VALUES
+    (1, '2024-06-01 09:00:00', 1, 1, 1, 1, 1),
+    (2, '2024-06-02 10:00:00', 2, 2, 2, 2, 2);
+
+-- Insert sample data into the STUDENT table
+INSERT INTO student (ID, firstName, lastName, gradeID, classID)
+VALUES
+    (1, 'Alice', 'Johnson', 1, 1),
+    (2, 'Bob', 'Williams', 2, 2);
+
+-- Insert sample data into the PARENT table
+INSERT INTO parent (ID, firstName, lastName, email, studentID)
+VALUES
+    (1, 'Charlie', 'Johnson', 'charlie.johnson@example.com', 1),
+    (2, 'Daisy', 'Williams', 'daisy.williams@example.com', 2);
+
+
+	
