@@ -1,20 +1,67 @@
 from rest_framework import serializers
-from .models import Student, Class, Grade
+from .models import Attendance, Class, Cost, Grade, Instructor, Parent, Phone, Phonetype, Room, Student, Subject
 
-class GradeSerializer(serializers.ModelSerializer):
+class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Grade
-        fields = ['gradenumber']
+        model = Attendance
+        fields = '__all__'
+
 
 class ClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class
-        fields = ['starttime', 'roomid', 'instructorid', 'subjectid', 'costid']
+        fields = '__all__'
+
+
+class CostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cost
+        fields = '__all__'
+
+
+class GradeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Grade
+        fields = '__all__'
+
+
+class InstructorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Instructor
+        fields = '__all__'
+
+
+class ParentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Parent
+        fields = '__all__'
+
+
+class PhoneSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Phone
+        fields = '__all__'
+
+
+class PhonetypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Phonetype
+        fields = '__all__'
+
+
+class RoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Room
+        fields = '__all__'
+
 
 class StudentSerializer(serializers.ModelSerializer):
-    grade = GradeSerializer(source='gradeid', read_only=True)
-    current_classes = ClassSerializer(source='classid', many=True, read_only=True)
-
     class Meta:
         model = Student
-        fields = ['firstname', 'lastname', 'grade', 'current_classes']
+        fields = '__all__'
+
+
+class SubjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subject
+        fields = '__all__'
