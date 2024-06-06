@@ -6,7 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Attendance(models.Model):
     studentid = models.ForeignKey('Student', models.DO_NOTHING, db_column='studentid')
@@ -111,7 +111,7 @@ class Student(models.Model):
 
 
 class StudentClass(models.Model):
-    studentid = models.OneToOneField(Student, models.DO_NOTHING, db_column='studentid', primary_key=True)  # The composite primary key (studentid, classid) found, that is not supported. The first column is selected.
+    studentid = models.OneToOneField(Student, models.DO_NOTHING, db_column='studentid', primary_key=True) 
     classid = models.ForeignKey(Class, models.DO_NOTHING, db_column='classid')
 
     class Meta:
@@ -126,3 +126,11 @@ class Subject(models.Model):
     class Meta:
         managed = False
         db_table = 'subject'
+
+class Role(models.TextChoices):
+    PARENT = 'parent'
+    STAFF = 'staff'
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    role = models.CharField(max_length=10, choices=Role.choices, default=Role.PARENT)

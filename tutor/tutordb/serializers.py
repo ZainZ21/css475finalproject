@@ -2,8 +2,9 @@ from rest_framework import serializers
 from .models import (
     Attendance,
     Class, Cost,  Grade, Instructor, Parent, Phone,
-    Phonetype, Room, Student, Subject, StudentClass
+    Phonetype, Room, Student, Subject, StudentClass, Role
 )
+from rest_framework import permissions
 
 class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -79,3 +80,5 @@ class StudentClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = StudentClass
         fields = '__all__'
+
+

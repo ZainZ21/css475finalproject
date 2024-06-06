@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import AttendanceViewSet, ClassViewSet, CostViewSet, GradeViewSet, InstructorViewSet, ParentViewSet, PhoneViewSet, PhonetypeViewSet, RoomViewSet, StudentClassViewSet, StudentViewSet, SubjectViewSet, get_student_grades
+from .views import AttendanceViewSet, ClassViewSet, CostViewSet, GradeViewSet, InstructorViewSet, ParentViewSet, PhoneViewSet, PhonetypeViewSet, RoomViewSet, StudentClassViewSet, StudentViewSet, SubjectViewSet, StudentGradesView, ClassInfoView, CostView
 
 router = DefaultRouter()
 router.register(r'attendance', AttendanceViewSet)
@@ -18,6 +18,8 @@ router.register(r'studentclass', StudentClassViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('student-grades/<int:student_id>/', get_student_grades, name='get_student_grades'),
-
+    path('student-grades/<int:student_id>/', StudentGradesView.as_view(), name='get_student_grades'),
+    path('class-info/<int:class_id>/', ClassInfoView.as_view(), name='get_class_information'),
+    path('get_cost/<int:parent_id>/', CostView.as_view(), name='get_cost'),
+    
 ]
