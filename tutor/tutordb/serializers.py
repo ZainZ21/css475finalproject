@@ -1,11 +1,14 @@
 from rest_framework import serializers
-from .models import Attendance, Class, Cost, Grade, Instructor, Parent, Phone, Phonetype, Room, Student, Subject
+from .models import (
+    Attendance,
+    Class, Cost,  Grade, Instructor, Parent, Phone,
+    Phonetype, Room, Student, Subject, StudentClass
+)
 
 class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendance
         fields = '__all__'
-
 
 class ClassSerializer(serializers.ModelSerializer):
     class Meta:
@@ -64,4 +67,15 @@ class StudentSerializer(serializers.ModelSerializer):
 class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subject
+        fields = '__all__'
+
+
+class ClassSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Class
+        fields = '__all__'
+
+class StudentClassSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StudentClass
         fields = '__all__'
