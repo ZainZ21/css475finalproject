@@ -1,7 +1,7 @@
 # css475finalproject
 Project Documentation
 
-#SETUP:
+SETUP:
 
 
 Install django
@@ -33,3 +33,10 @@ In addition you can use
 'class-info/<int:class_id>/'
 
 To access different methods, though they also require admin. 
+
+
+ERRORS: 
+
+If any errors come up
+1.) Try deleting the migration files within migrations folder
+
